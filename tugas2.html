@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Pemrograman Web - Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan variabel */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0d2a85;
+            --secondary-color: #0000FF;
+            --accent-color: #f0f8ff;
+            --text-color: #333;
+            --light-color: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif, sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Layout dengan CSS Grid */
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header"
+                "nav"
+                "hero"
+                "features"
+                "content"
+                "programs"
+                "form"
+                "footer";
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            grid-area: header;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        header img {
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        /* Navigasi */
+        nav {
+            grid-area: nav;
+            background-color: var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            animation: slideIn 1s ease-out;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            grid-area: hero;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            padding: 40px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            animation: slideUp 1s ease-out 0.7s both;
+        }
+
+        /* Features Section */
+        .features {
+            grid-area: features;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Content Section */
+        .content {
+            grid-area: content;
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .content h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        /* Animated Box dengan Perubahan Warna Saja */
+        .animated-box {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: colorChange 8s ease-in-out infinite;
+        }
+
+        .animated-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.2) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        /* Animasi dengan @keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animasi Perubahan Warna */
+        @keyframes colorChange {
+            0% {
+                background: linear-gradient(45deg, #0d2a85, #0000FF);
+                transform: scale(1);
+            }
+            25% {
+                background: linear-gradient(45deg, #ffb56b, #FFE66D);
+                transform: scale(1.02);
+            }
+            50% {
+                background: linear-gradient(45deg, #050da4, #2888efea);
+                transform: scale(1);
+            }
+            75% {
+                background: linear-gradient(45deg, #916c1d, #ebb166);
+                transform: scale(1.02);
+            }
+            100% {
+                background: linear-gradient(45deg, #0d2a85, #0000FF);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Programs Section */
+        .programs-section {
+            grid-area: programs;
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .programs-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .faculty-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .faculty-card {
+            background: var(--accent-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .faculty-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faculty-card h3 i {
+            color: var(--secondary-color);
+        }
+
+        .faculty-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .faculty-link:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+            opacity: 1;
+        }
+
+        .program-list {
+            list-style-type: none;
+        }
+
+        .program-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .program-list li:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding-left: 10px;
+        }
+
+        .program-list li:last-child {
+            border-bottom: none;
+        }
+
+        .program-name {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .program-degree {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .programs-summary {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            border-radius: 8px;
+        }
+
+        .programs-summary h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            grid-area: form;
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .form-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(0, 0, 255, 0.3);
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            grid-area: footer;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-out;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-areas:
+                    "header header"
+                    "nav nav"
+                    "hero hero"
+                    "features features"
+                    "content content"
+                    "programs programs"
+                    "form form"
+                    "footer footer";
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            form {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            .form-group:nth-child(5),
+            .form-group:nth-child(6),
+            .form-group:nth-child(7) {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                grid-template-areas:
+                    "header header header"
+                    "nav nav nav"
+                    "hero hero hero"
+                    "features features features"
+                    "content content content"
+                    "programs programs programs"
+                    "form form form"
+                    "footer footer footer";
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h2 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="UMKLALOGO2.png" alt="Logo UMKLA">
+            <h1>Universitas Muhammadiyah Klaten</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="http://ti.umkla.ac.id/"><i class="fas fa-laptop-code"></i> TI UMKLA</a></li>
+                <li><a href="http://umkla.ac.id/"><i class="fas fa-university"></i> Universitas Muhammadiyah Klaten</a></li>
+                <li><a href="#fkt"><i class="fas fa-heartbeat"></i> Fakultas Kesehatan & Teknologi</a></li>
+                <li><a href="#fishum"><i class="fas fa-users"></i> Fakultas Ilmu Sosial & Humaniora</a></li>
+                <li><a href="#fai"><i class="fas fa-mosque"></i> Fakultas Agama Islam</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <h2>Selamat Datang di UMKLA</h2>
+            <p>Universitas Muhammadiyah Klaten atau disingkat UMKLA merupakan salah satu Perguruan Tinggi Swasta di Klaten,</p>
+            <p>yang tergabung dalam jaringan Perguruan Tinggi Muhammadiyah.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Program Studi Unggulan</h3>
+                <p>Beragam pilihan program studi yang tentunya memberi kesempatan yang lebih luas untuk studi lanjut sesuai dengan peminatan calon mahasiswa.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h3>Dosen Berpengalaman</h3>
+                <p>Dosen-dosen berkualifikasi tinggi dengan pengalaman di bidangnya.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Fasilitas Memadai</h3>
+                <p>Fasilitas pendidikan yang memadai dan mendukung proses belajar.</p>
+            </div>
+        </section>
+
+        <section class="content">
+            <h2>Program Pendidikan di UMKLA</h2>
+            <p>UMKLA memiliki Visi Menjadi Universitas terkemuka yang andal dan bermartabat dalam inovasi ilmu pengetahuan dan teknologi berlandaskan nilai-nilai Islam untuk mewujudkan masyarakat utama.</p>
+            <p>Untuk mencapai visi tersebut UMKLA memiliki 12 Program Studi yang terbagi dalam Tiga Fakultas, Fakultas Kesehatan dan Teknologi (FKT), Fakultas Ilmu Sosial dan Humaniora (FISHUM), dan Fakultas Agama Islam (FAI).</p>
+            
+            <!-- Animated Box dengan Perubahan Warna Saja -->
+            <div class="animated-box">
+                Mari Bergabung Bersama UMKLA
+            </div>
+            
+            <p>Bergabunglah dengan komunitas akademik yang dinamis dan inovatif untuk meraih masa depan gemilang!</p>
+        </section>
+
+        <!-- Bagian Program Studi dengan Link untuk Setiap Fakultas -->
+        <section class="programs-section">
+            <h2>Daftar Program Studi UMKLA</h2>
+            <div class="faculty-container">
+                <div class="faculty-card" id="fkt">
+                    <a href="http://fkt.umkla.ac.id/" class="faculty-link" title="Kunjungi Website FKT">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <h3><i class="fas fa-heartbeat"></i> Fakultas Kesehatan dan Teknologi (FKT)</h3>
+                    <ul class="program-list">
+                        <li>
+                            <span class="program-name">Pendidikan Profesi Ners</span>
+                            <span class="program-degree">Profesi</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Ilmu Keperawatan</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Administrasi Kesehatan</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Teknologi Informasi</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Farmasi</span>
+                            <span class="program-degree">D3</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Keperawatan</span>
+                            <span class="program-degree">D3</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Kebidanan</span>
+                            <span class="program-degree">D3</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="faculty-card" id="fishum">
+                    <a href="http://fishum.umkla.ac.id/" class="faculty-link" title="Kunjungi Website FISHUM">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <h3><i class="fas fa-users"></i> Fakultas Ilmu Sosial dan Humaniora (FISHUM)</h3>
+                    <ul class="program-list">
+                        <li>
+                            <span class="program-name">Manajemen</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Ilmu Komunikasi</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Akuntansi</span>
+                            <span class="program-degree">D3</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="faculty-card" id="fai">
+                    <a href="http://fai.umkla.ac.id/" class="faculty-link" title="Kunjungi Website FAI">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <h3><i class="fas fa-mosque"></i> Fakultas Agama Islam (FAI)</h3>
+                    <ul class="program-list">
+                        <li>
+                            <span class="program-name">Pendidikan Agama Islam</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                        <li>
+                            <span class="program-name">Pendidikan Islam Anak Usia Dini (PIAUD)</span>
+                            <span class="program-degree">S1</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="programs-summary">
+                <h3>Total 12 Program Studi</h3>
+                <p>Pilihan lengkap untuk masa depan yang cerah</p>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Formulir Pendaftaran</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telepon">Nomor Telepon:</label>
+                    <input type="tel" id="telepon" name="telepon" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="program">Program Studi yang Diminati:</label>
+                    <select id="program" name="program" required>
+                        <option value="">Pilih Program Studi</option>
+                        <option value="Pendidikan Profesi Ners">Pendidikan Profesi Ners</option>
+                        <option value="Ilmu Keperawatan">Ilmu Keperawatani</option>
+                        <option value="Administrasi Kesehatan">Administrasi Kesehatan</option>
+                        <option value="Teknologi Informasi">Teknologi Informasi</option>
+                        <option value="Farmasi">Farmasi</option>
+                        <option value="Keperawatan">Keperawatan</option>
+                        <option value="Kebidanan">Kebidanan</option>
+                        <option value="Manajemen">Manajemen</option>
+                        <option value="Ilmu Komunikasi">Ilmu Komunikasi</option>
+                        <option value="Pendidikan Agama Islam">Pendidikan Agama Islam</option>
+                        <option value="Pendidikan Islam Anak Usia Dini (PIAUD)">Pendidikan Islam Anak Usia Dini (PIAUD)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pesan">Pesan Tambahan:</label>
+                    <textarea id="pesan" name="pesan" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="berkas">Unggah Berkas Pendukung:</label>
+                    <input type="file" id="berkas" name="berkas">
+                </div>
+                
+                <input type="submit" value="Kirim Pendaftaran">
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Universitas Muhammadiyah Klaten. Semua Hak Dilindungi.</p>
+            <p>7JH3+JP2, Jl. Jombor Indah, Gemolong, Buntalan, Kec. Klaten Tengah, Kabupaten Klaten, Jawa Tengah</p>
+            <div class="social-links">
+                <a href="https://web.facebook.com/humasumklaten?_rdc=1&_rdr#"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/umkla_official" ><i class="fab fa-x"></i></a>
+                <a href="https://www.instagram.com/umkla.official?igsh=Ym51aXExMjMwNjhz"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@umkla.official"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
